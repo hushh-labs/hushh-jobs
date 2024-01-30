@@ -24,14 +24,18 @@ def extract_resume(resume):
 def main():
     st.set_page_config(layout="wide", page_title="Hushh Jobs")
     st.header("Hushh Jobs")
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
 
     with col1:
         resumes = st.file_uploader(
             "Upload resumes here!", accept_multiple_files=True, type="pdf"
         )
 
+
     with col2:
+        no_of_resumes = st.number_input("Enter the number of resumes you want to shortlist",step=1)
+
+    with col3:
         job_description = st.text_area("Enter the job description here!", height=250)
         rank_btn = st.button("Rank")
     model, prompt = instantiate_llm()
@@ -49,7 +53,8 @@ def main():
                 resumes, job_description
             )
             print(ranked_resumes)
-            for selected_resume in ranked_resumes[:25]:
+            no_of_resumes=int(no_of_resumes)
+            for selected_resume in ranked_resumes[:no_of_resumes]:
                 resume_text = text_bank[selected_resume[0]]
 
                 doc_query = f"Return only a json based on this candidate's resume information: {resume_text}"
