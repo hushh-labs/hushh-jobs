@@ -38,9 +38,11 @@ def main():
     with col3:
         job_description = st.text_area("Enter the job description here!", height=250)
         rank_btn = st.button("Rank")
+    
     model, prompt = instantiate_llm()
 
     if resumes and rank_btn:
+
         if len(job_description) < 1:
             st.warning(
                 "Invalid or Empty job description! Please make sure your job description has atleast 25 characters!"
@@ -52,7 +54,7 @@ def main():
             ranked_resumes, embeddings_bank, text_bank = extract_and_rank(
                 resumes, job_description
             )
-            print(ranked_resumes)
+
             no_of_resumes=int(no_of_resumes)
             for selected_resume in ranked_resumes[:no_of_resumes]:
                 resume_text = text_bank[selected_resume[0]]

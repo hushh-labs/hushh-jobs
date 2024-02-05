@@ -1,2 +1,3 @@
 .DS_Store
-jobsenv
+env/
+__pycache__/

@@ -16,7 +16,6 @@ def extract_and_rank(resumes, job_description):
         out_embed_dict.update(d1)
         out_text_dict.update(d2)
     ranked_output = rankings(out_dict=out_embed_dict, query=job_description)
-
     return ranked_output, out_embed_dict, out_text_dict
 
 
