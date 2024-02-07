@@ -24,6 +24,7 @@ def extract_resume(resume):
 def main():
     st.set_page_config(layout="wide", page_title="Hushh Jobs")
     st.header("Hushh Jobs")
+    model, prompt = instantiate_llm()
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -39,7 +40,7 @@ def main():
         job_description = st.text_area("Enter the job description here!", height=250)
         rank_btn = st.button("Rank")
     
-    model, prompt = instantiate_llm()
+    
 
     if resumes and rank_btn:
 
